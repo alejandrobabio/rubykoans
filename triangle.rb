@@ -13,8 +13,22 @@
 # and
 #   about_triangle_project_2.rb
 #
+def valid_triangle(a, b, c)
+  return false if [a, b, c].any? {|arg| arg <= 0}
+  x, y, z = [a, b, c].sort
+  return false if x + y <= z
+  true
+end
+
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  raise TriangleError unless valid_triangle(a,b,c)
+  if a == b && a == c
+    :equilateral
+  elsif a == b || a == c || b == c
+    :isosceles
+  else
+    :scalene
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
